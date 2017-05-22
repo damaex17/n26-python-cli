@@ -22,8 +22,8 @@ def get_credentials():
 def main():
   username,password = get_credentials()
   token = login(username, password)
-  print get_n26(token,'https://api.tech26.de/api/me')
-  print get_n26(token,'https://api.tech26.de/api/accounts')
+  get_n26(token,'https://api.tech26.de/api/me')
+  get_n26(token,'https://api.tech26.de/api/accounts')
 
 
 if __name__ == "__main__":
