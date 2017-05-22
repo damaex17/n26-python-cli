@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import requests
 import getpass
+import pprint
 
 
 def login(username,password):
@@ -12,7 +13,7 @@ def login(username,password):
 def get_n26(token,url):
   h = {'Authorization': 'Bearer %s' % token, 'Content-type': 'application/json'}
   r = requests.get('%s' % url, headers=h)
-  print r.json()
+  return r.json()
 
 def get_credentials():
   username = raw_input("Enter your N26 email address: ")
@@ -22,8 +23,9 @@ def get_credentials():
 def main():
   username,password = get_credentials()
   token = login(username, password)
-  get_n26(token,'https://api.tech26.de/api/me')
-  get_n26(token,'https://api.tech26.de/api/accounts')
+  pprint.pprint(get_n26(token,'https://api.tech26.de/api/me'))
+  pprint.pprint(get_n26(token,'https://api.tech26.de/api/accounts'))
+  pprint.pprint(get_n26(token,'https://api.tech26.de/api/smrt/transactions'))
 
 
 if __name__ == "__main__":
